@@ -1,6 +1,7 @@
 import {Button} from "../ui/button.tsx";
 import {Card, CardContent, CardDescription, CardFooter, CardTitle} from "../ui/card.tsx";
 import {useNavigate} from "react-router-dom";
+import { useCart } from "@/lib/cartContext";
 
 type Props = {
     id: string,
@@ -12,9 +13,26 @@ type Props = {
 
 export default function ProductCard({ id, name, price, image, hot}: Props) {
     const navigate = useNavigate();
+    const { addToCart } = useCart();
 
     const handleClick = () => {
         navigate(`/products/${id}`);
+    }
+
+    const toNumericId = (val: string) => Array.from(val).reduce((acc, ch) => acc + ch.charCodeAt(0), 0)
+    const parsePrice = (val: string) => {
+        const cleaned = val.replace(/[^\d.,]/g, '').replace(',', '.')
+        const num = parseFloat(cleaned)
+        return Number.isFinite(num) ? num : 0
+    }
+
+    const handleAddToCart = () => {
+        addToCart({
+            id: toNumericId(id),
+            name,
+            price: parsePrice(price),
+            imageUrl: image,
+        } as any, 1)
     }
 
     return (
@@ -31,8 +49,9 @@ export default function ProductCard({ id, name, price, image, hot}: Props) {
                 <CardTitle className={"text-lg text-center"}>{name}</CardTitle>
                 <CardDescription className={"text-xl font-bold text-center text-foreground"}>{price}</CardDescription>
             </CardContent>
-            <CardFooter className={"w-full"}>
-                <Button className={"w-full"} onClick={handleClick}>Je le commande !</Button>
+            <CardFooter className={"w-full flex gap-2"}>
+                <Button variant={"outline"} className={"w-1/2"} onClick={handleClick}>Voir</Button>
+                <Button className={"w-1/2"} onClick={handleAddToCart}>Ajouter au panier</Button>
             </CardFooter>
         </Card>
     )
