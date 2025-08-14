@@ -1,0 +1,12 @@
+{
+  "id": "OnePiece",
+  "name": "Display One Piece OP-06",
+  "description": "One Piece Test",
+  "price": "39.99€",
+  "imageUrl": "/product_3.png",
+  "stock": 0,
+  "images": [
+    "/product_3.png",
+    "/product_3.png"
+  ]
+}
