@@ -1,0 +1,12 @@
+{
+  "id": "Lorcana",
+  "name": "Display Lorcana Floodborn",
+  "description": "Lorcana test",
+  "price": "34.99€",
+  "imageUrl": "/product_2.png",
+  "stock": 30,
+  "images": [
+    "/product_2.png",
+    "/product_2.png"
+  ]
+}

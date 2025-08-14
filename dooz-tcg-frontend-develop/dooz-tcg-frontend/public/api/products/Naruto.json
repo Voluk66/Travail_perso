@@ -1,0 +1,12 @@
+{
+  "id": "Naruto",
+  "name": "Display Kayou 5 Naruto",
+  "description": "Naruto test",
+  "price": "34.99€",
+  "imageUrl": "/product_1.png",
+  "stock": 5,
+  "images": [
+    "/product_1.png",
+    "/product_1.png"
+  ]
+}
